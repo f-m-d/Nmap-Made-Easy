@@ -176,3 +176,47 @@ echo "[*] Scanning: nmap -PE -T4 --traceroute example.com";
 nmap -PE -T4 --traceroute example.com
 sleep 2s;
 echo -e "\n\n";
+
+
+
+# YOU CAN GET MORE INFO USING WHOIS COMMAND:
+# IMPORTANT LINES ARE ABOUT ORGANIZATION (ORGNAME)
+# YOU CAN USE EXTERNAL SERVICES TO GET THE NETBLOCK:
+# https://searchdns.netcraft.com/
+
+# EXAMPLES
+echo '[*] "Whois" tool: asking for example.com IP Info';
+echo '[*] Scanning: whois example.com / whois151.101.194.187';
+whois 151.101.194.187;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] "Whois" tool: Query example.com';
+echo '[*] Scanning: whois -h whois.arin.net @example.com';
+whois -h whois.arin.net @example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] "Whois" tool: Query Netblock of example';
+echo '[*] Scanning: whois -h whois.arin.net "n example*"';
+whois -h whois.arin.net "n example*";
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] "Whois" tool: Query Organization starting with example';
+echo '[*] Scanning: whois -h whois.arin.net "o example*"';
+whois -h whois.arin.net "o example*";
+sleep 2s;
+echo -e "\n\n";
+
+
+
+# ENTITIES (E.G.: MICROSOFT) ARE ASSIGNED WITH
+# AUTONOMOUS SYSTEM NUMBER (AS) FOR A GIVEN IP ADDRESS.
+# AN USEFUL LINK TO DETERMINE THE "AS" USING AN IP ADDRESS:
+# http://asn.cymru.com/
+# ALSO, YOU CAN TIPE "AS<NUMBER> (E.G.: AS8075)"
+# AT THE FOLLOWING SITE SEARCH BAR TO FIND ALL THE
+# IP PREFIXES WHICH ROUTE TO THIS "AS":
+# https://www.robtex.com/as/
+# https://www.robtex.com/as/AS8075.html
