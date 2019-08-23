@@ -153,4 +153,26 @@ echo -e "\n\n";
 # A RECURSIVE HOST COMMAND ON RESULTS OR TRYING
 # FOR AN ENUMERATION OF SUBDOMAINS OR YOU CAN
 # USE "WEBSPLOIT" WITH WEB/ MODULES (IF THEY USE A CLOUD)
-# OR YOU CAN USE SUBBRUTEPY:
+# OR YOU CAN USE SUBBRUTEPY (CARE, AGAI, ABOUT LEGAL DISCLAIMERS)
+
+# YOU CAN REQUIRE A ZONE TRANSFER USINH DIG COMMAND AND
+# SPECIFYING A DNS AS AN ARGUMENT
+
+echo '[*] "Dig" tool: AXFR Record (Zone Tranfer Request';
+dig @INSERT_DNS_OF_CPSR -t AXFR cpsr.org
+sleep 2s;
+echo -e "\n\n";
+
+
+
+# PINGING A DOMAIN DOESN'T MEAN THAT THE HOST CAN BE PART
+# OF THE NET WE NEED TO SCAN. YOU CAN GET BETTER INFO
+# WITH DNS REVERSE RESOLUTION, TRACEROUTE AND WHOIS VERSUS
+# THE IP ADDRESS OBTAINED
+
+# EXAMPLES
+echo '[*] Example Scan: Traceroute with nmap and ICMP Echo request discovery probes';
+echo "[*] Scanning: nmap -PE -T4 --traceroute example.com";
+nmap -PE -T4 --traceroute example.com
+sleep 2s;
+echo -e "\n\n";
