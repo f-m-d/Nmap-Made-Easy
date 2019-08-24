@@ -158,7 +158,7 @@ echo -e "\n\n";
 # YOU CAN REQUIRE A ZONE TRANSFER USINH DIG COMMAND AND
 # SPECIFYING A DNS AS AN ARGUMENT
 
-echo '[*] "Dig" tool: AXFR Record (Zone Tranfer Request';
+echo '[*] "Dig" tool: AXFR Record cpsr.org (Zone Tranfer Request';
 dig @INSERT_DNS_OF_CPSR -t AXFR cpsr.org
 sleep 2s;
 echo -e "\n\n";
@@ -220,3 +220,209 @@ echo -e "\n\n";
 # IP PREFIXES WHICH ROUTE TO THIS "AS":
 # https://www.robtex.com/as/
 # https://www.robtex.com/as/AS8075.html
+
+
+
+##########################################################
+
+# DNS RESOLUTION:
+
+# BY DEFAULT, NMAP DOES A DNS-REVERSE RESOLUTION FOR
+# EVERY IP ADDRESS THAT ANSWERS BACK TO DISCOVERY PROBES
+# (I.E. ALL ONLINE HOSTS) WITH PARALLELIZED REQUESTS.
+# NMAP OFFERS 4 OPTIONS TO CONTROL DNS RESOLUTION:
+
+echo '[*] Example Scan: Nmap DO NOT do DNS Resolution (-n)';
+echo "[*] Scanning: nmap -n example.com";
+nmap -n example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Nmap DNS Resolution to all IP scanned (-R)';
+echo "[*] Scanning: nmap -n example.com";
+nmap -R example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Nmap use System DNS Resolution (--system-dns)';
+echo "[*] Scanning: nmap --system-dns example.com";
+nmap --system-dns example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Nmap Use chosen DNS Servers (--dns-servers)';
+echo "[*] Scanning: nmap --dns-servers <DNS_SERVER> example.com";
+echo '[*] DNS file confs are: "resolv.conf" (Unix)/ Registry (Win32)';
+nmap --dns-servers 192.168.1.1 example.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+##########################################################
+
+# HOST DISCOVERY CONTROLS:
+
+# STARTING WITH THE LESS INTRUSIVE WAY:
+#
+#					 "-sL"
+#
+# LIST THE HOSTS (WITHOUT SENDING THEM PACKETS) BUT
+# STILL DOES REVERSE-DNS RESOLUTION TO LEARN THEIR NAMES.
+# YOU SHOULD DO THAT TO KNOW WHAT ARE THE HOSTS OR IP
+# YOU NEED TO SCAN AND WHICH YOU NEED TO AVOID.
+# IN FACT, YOU CAN'T DO OS DETECTION, PORT SCANNING,
+# OR PING SCANNING.
+
+echo '[*] Example Scan: Nmap ScanList (-sL)';
+echo "[*] Scanning: nmap -sL 192.168.1.0/24";
+nmap -sL 192.168.1.0/24;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sn (OLD -sP)"
+#
+# DO ONLY PING SCAN TO CHECK WHAT HOST IS UP.
+# ALSO, IT DISABLE PORT SCAN. CAN BE COMBINED
+# WITH OTHER "-P*" TO HAVE MORE FLEXIBILITY.
+# BY DEFAULT, SEND AN ICMP ECHO REQUEST, TCP SYN 443,
+# TCP ACK 80 AND ICMP TIMESTAMP (IF EXECUTED BY PRIVILEGED),
+# OTHERWISE SEND TCP SYN 443 AND 80 (IF EXECUTED BY UNPRIVILEGED).
+
+
+echo '[*] Example Scan: Nmap Ping Scan (-sn)';
+echo "[*] Scanning: nmap -sn 192.168.1.0/24";
+nmap -sn 192.168.1.0/24;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-Pn (OLD PN)"
+# SKIP THE DISCOVERY STAGE ALTOGETHER.
+# USUALLY, NMAP DOES PORT SCANS, VERSION DETECTION,
+# OD DETECTION AGAINST HOSTS FOUND TO BE UP.
+# WITH THIS OPTION, INSTEAD, NMAP TRY TO SCAN
+# EVERY IP ADDRESS SPECIFIED.
+# IT IS USEFUL BECAUSE SOME MACHINES CAN BE FIREWALLED AND
+# CAN'T ANSWER TO PING PROBES.
+# ANOTHER GOOD REASON IS THAT THEY ARE ALREADY KNOWKN
+# THE MACHINES IP AND SO THERE IS NO REASON TO SCAN
+# FOR OTHER HOSTS.
+
+echo '[*] Example Scan: Disable Ping Scan (-sn)';
+echo "[*] Scanning: nmap -Pn 192.168.1.0/24";
+nmap -Pn 192.168.1.0/24;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+##########################################################
+
+# HOST DISCOVERY TECHNIQUES:
+
+# TODAY, NOT ALL HOSTS PROVIDE A RESPONSE TO ICMP ECHO.
+# TO BE SURE IF THE HOST ACTIVITY IS UP, YOU CAN SPECIFY
+# A LOT OF OTHER TECHINIQUES TO DO A HOST DISCOVERY.
+
+echo '[*] Example Scan: Ping Scan but not all target answer BACK(-sn)';
+echo "[*] Scanning: nmap -sn -PE -R -v microsoft.com ebay.com citibank.com google.com slashdot.org yahoo.com";
+nmap -sn -PE -R microsoft.com ebay.com citibank.com google.com slashdot.org yahoo.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-PS<PORT-LIST>"
+# SENDS AN EMPTY TCP PACKET WITH THE "SYN" FLAG SET.
+# IT SUGGETS TO THE ATTACKED HOST THAT YOU ARE
+# ATTEMPTING TO ESTABILISH A CONNECTION (SYN,SYN+ACK,ACK).
+# IF THE PORT IS CLOSED YOU WILL HAVE RESET PACKET (RST),
+# IF IT OPEN YOU WILL HAVE AN ACK.
+# IF THE PORT IS OPEN, NMAP RESPOND WITH AND (RST)
+# PACKAGE TO BLOCK THE 3-WAY HANDSHAKE: IF THE HOST
+# ANSWER WITH AN RST OR ACK, IT MEANS THAT IT IS ON.
+# USING CORRECTLY -PS ARG HELP TO BYPASS FIREWALLS CONTROL
+
+echo '[*] Example Scan: Ping Scan on TCP SYN on PORT 80';
+echo "[*] Scanning: nmap -sn -PE -R -v microsoft.com ebay.com citibank.com google.com slashdot.org yahoo.com";
+nmap -sn -PS80 -R microsoft.com ebay.com citibank.com google.com slashdot.org yahoo.com;
+sleep 2s;
+echo -e "\n\n";
+echo "[*] As you see, all the hosts now are up!!!";
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-PA<PORT-LIST>"
+# SENDS AN EMPTY TCP PACKET WITH THE "ACK" FLAG SET.
+# AN "ACK" PACKET SENT THIS WAY LET THE HOST ANSWER
+# BACK WITH AN (RST) PACKET: BECAUSE THE CONNECTION
+# ON THAT PORT DOESN'T EXIST.
+# USING CORRECTLY -PA ARG HELP TO BYPASS FIREWALLS CONTROL
+
+echo '[*] Example Scan: Ping Scan TCP ACK on PORT 80';
+echo "[*] Scanning: nmap -sn -PA80 microsoft.com";
+nmap -sn -PA80 microsoft.com;
+sleep 2s;
+echo -e "\n\n";
+echo "[*] The firewall blocks the ACK, showing us the host as down!!!";
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-PU<PORT-LIST>"
+# CALLED "UDP PING", IT SEND AN EMPTY UDP PACKET
+# (UNLESS --data-length IS SPECIFIED) TO 40125,
+# UNLESS OTHER PORTS ARE SPECIFIED.
+# IF THE UDP PACKET IS SENT TO A CLOSEN PORT,
+# THE UDP PROBE SHOULD ELICIT AN "ICMP PORT UNREACHABLE"
+# PACKET IN RETURN: THAT MEANS THE HOST IS UP.
+# IF THE UDP PACKET IS SENT TO AN OPEN PORT, IT
+# WILL GIVE BACK NO RESPONSE.
+# THE ADVANTAGE IS TO BYPASS ALL THE FIREWALLS SCREENING
+# TCP-ONLY PACKETS.
+
+echo '[*] Example Scan: Ping Scan UP on default port (40125)';
+echo "[*] Scanning: nmap -sn -PU microsoft.com";
+nmap -sn -PU microsoft.com;
+sleep 2s;
+echo -e "\n\n";
+echo "[*] The firewall blocks the UDP, showing us the host as down!!!";
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-PE, -PP, -PM"
+# WITH -PE OPTION, NMAP CAN SEND STANDARD PACKETS
+# LIKE THE "PING" PROGRAM DOES.
+# MOST OF HOSTS WILL NOT ANSWER TO THAT PING RESPONSE,
+# BUT CAN BE PRATICAL TO SYSADMINS MONITORING THEIR NETWORK.
+#
+# "-PE" 		ICMP ECHO REQUEST (ICMP TYPE 8)
+# "-PP"			ICMP TIMESTAMP REQUEST (ICMP CODE 14)
+# "-PM"			ICMP ADDRESS MASK REQUEST (ICMP CODE 18)
+#
+# THEY ARE USED TO HOST DISCOVERY
+# (NMAP DOESN'T IMPLEMENT THIS INFORMATION REQUESTED PACKETS,
+# THEY ARE NOT SUPPORTED WIDELY)		
+# IT IS USEFUL IF THE FIREWALL/ADMIN BLOCK ICMP PING (TYPE 8)
+# BUT FORGOT TO MANAGE/BLOCK OTHER ICMP QUERIES.
+
+echo '[*] Example Scan: ICMP Queries (Echo, Timestamp, Address Mask)';
+echo "[*] Scanning (Echo): nmap -sn -PE microsoft.com";
+nmap -sn -PU microsoft.com;
+echo -e "\n\n";
+echo "[*] Scanning (Timestamp): nmap -sn -PP microsoft.com";
+nmap -sn -PU microsoft.com;
+echo -e "\n\n";
+echo "[*] Scanning (Address Mask): nmap -sn -PM microsoft.com";
+nmap -sn -PU microsoft.com;
+sleep 2s;
+echo -e "\n\n";
