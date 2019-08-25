@@ -426,3 +426,56 @@ echo "[*] Scanning (Address Mask): nmap -sn -PM microsoft.com";
 nmap -sn -PU microsoft.com;
 sleep 2s;
 echo -e "\n\n";
+
+
+
+#					"-PO<PROTOCOL-LIST>"
+# IP PROTOCOL PING, WITH A SPECIFIED PROTOCOL SET IN
+# IP PACKET HEADER. BY DEFAULT IT SENDS MULTIPLE PACKETS:
+# ICMP (PROTOCOL 1), IGMP (PROTOCOL 2), IP-IN-IP (PROTOCOL 4)
+# FOR TCP (PROTOCOL 6), UDP (PROTOCOL 17) AND THE OTHER PACKETS
+# MENTIONED ABOVE, PACKET WILL BE SEND WITH A PROPER HEADER.
+# OTHER PACKAGES WITH DIFFERENT PROTOCOLS HAVE NO ADDITIONAL
+# DATA (UNLESS --data-string, --data OR --data-length ARE SPECIFIED)
+# THIS METHOD WORK THE SAME WAY AS ICMP PROTOCOLS WORK
+
+echo '[*] Example Scan: IP Ping (-PO)';
+echo "[*] Scanning: nmap -sn -PO example.com";
+nmap -sn -PO example.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-PR"
+# DOES AN ARP SCAN TO THE LOCAL ETHERNET NETWORK:
+# IT IS STRONGER AND FASTER THAN OTHER PING ARGUMENTS
+# SO NMAP WILL DO AN ARP SCAN INSTED OF OTHER -P*,
+# EVEN ICMP PACKETS.
+# THE DIFFERENCE BETWEEN IP AND ARP IS SHOWN:
+#
+# --send-eth		SEND RAW ETHERNET FRAMES
+# --send-ip			SEND RAW IP PACKETS
+# --packet-trace	SHOW ALL PACKET SENT AND RECEIVED
+
+echo '[*] Example Scan: IP Packet sent (--send-ip)';
+echo "[*] Scanning: nmap -n -sn --send-ip --packet-trace 192.168.1.1/24";
+nmap -n -sn --send-ip --packet-trace 192.168.1.1/24;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: ARP Packet sent (-PR)';
+echo "[*] Scanning: nmap -n -sn -PR --send-eth 192.168.1.1/24";
+nmap -n -sn -PR --send-eth 192.168.1.1/24;
+echo -e "\n\n";
+echo "[*] Both -PR and --send-eth ARE NULLIFIED!!!";
+echo "[*] Because ARP scan is default for hosts on local network";
+sleep 2s;
+echo -e "\n\n";
+
+
+
+##########################################################
+
+# CHOOSING/COMBINING PING OPTIONS:
+
