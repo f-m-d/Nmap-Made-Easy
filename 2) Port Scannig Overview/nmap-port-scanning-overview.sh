@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# PORT SCANNING
+# PORT SCANNING: INTRO
 #
 # YOU CAN SEE PORTS AS VIRTUAL CHANNELS WHERE PROGRAM CAN
 # COMUNICATE.
@@ -118,3 +118,200 @@ echo '[*] Scanning: nmap -PU53,67-69,123,135,137-139,161,162,445,500,514,520,631
 nmap -PU53,67-69,123,135,137-139,161,162,445,500,514,520,631,1434,1900,4500,49152 192.168.1.1;
 sleep 2s;
 echo -e "\n\n";
+
+
+
+###########################################################
+
+# PORT SCANNING: REASON WHYTO DO THAT
+
+# PORT SCANNING IS THE ACT TO SCAN PORT TO DETERMINE WHAT THE STATE THEY ARE.
+# NMAP SHOW THE PORTS IN 6 POSSIBLE STATUS:
+#
+# OPEN:
+# THE APPLICATION ON THAT PORT IS ACCEPTING THE TCP/UDP PACKETS.
+# ATTACKERS WANT TO OPEN AND OPEN PORTS, SYSADMIN WANT TO CLOSE THE UNUSED ONE.
+# CARE: SOME APPLICATIONS CAN BE PROTECTED WITH TCP WRAPEPRS (TCPD)
+# OR CAN SERVE ONLY DEFINED IP ADDRESSES OR CLIENTS.
+#
+# CLOSED:
+# THE PORT IS ACCESSIBLE, BUT THERE IS NO APPLICATION LISTENING ON IT.
+# SYSADMIN CAN BLOCK THIS PORT WITH A FIREWALL TO LET NMAP SEE THEM AS "FILTERED".
+#
+# FILTERED:
+# CAN NOT DETERMINE WHETER THE PORT IS OPEN BECAUSE PACKET FILTERING PREVENT PROBES TO REACH THE PORT.
+# FILTERING SOMETIMES MEAN: FIREWALL DEVICE, ROUTER ROULES, HOST-BASED FIREWALL SOFTWARE.
+# THEY CAN IGNORE THE PACKET AND DO NOT GIVE BACK A RESPONSE:
+# THIS MAKE NMAP SEND MORE SCANS (JUST IN CASE THE PROBE WAS DROPPED BY NET CONGESTION)
+#
+# UNFILTERED:
+# THE PORT IS ACCESSIBLE, BUT NMAP IS UNABLE TO DETERMINE IF THE PORT IS OPEN OR CLOSED.
+# ONLY "ACK" SCANS CLASSIFIES PORT IN THIS STATE.
+# SCANNING WITH OTHER SCANS (WINDOWS, SYN SCAN, FIN SCAN) CAN HELP TO KNOW MORE ABOUT.
+#
+# OPEN|FILTERED:
+# THIS STATE MEANS THAT NMAP IS UNABLE TO KNOW IF IT IS OPEN OR FILTERED.
+# IT IS USED FOR SCAN TYPES THAT GIVE NO REPONSE ON OPEN PORTS.
+# THE UDP, IP, FIN, NULL, XMAS SCAN CLASSIFY PORTS THIS WAY.
+#
+# CLOSED|FILTERED
+# THIS STATE MEANS THAT NMAP IS UNABLE TO KNOW IF IT CLOSED OR FILTERED.
+# IT IS USED ONLY FOR IP ID IDLE SCAN.
+
+
+
+###########################################################
+
+# PORT SCANNING: QUICK PORT SCANNING
+
+# THE EASIEST WAY TO DO AN NMAP SCAN IS TO DO AN "NMAP <ADDRESS>" SCAN.
+# WHEN YOU DO "NMAP <ADDRESS>" WITHOUT ARGUMENTS, IT DOES:
+#
+# 1)	CONVERT <TARGET> IN A IPV4 USING DNS (IF IS A DOMAIN)
+# 2)	PING WITH AN ICMP ECHO, TCP SYN 443, TCP ACK 80 AND ICMP TIMESTAMP.
+# 		YOU CAN SKIP THIS PART WITH "-Pn" (THREAT ALL HOST AS ONLINE / SKIP HOST DISCOVERY)
+# 3)	CONVERT THE IPV4 BACK TO THE DNS NAME: THE DNS NAME CAN BE DIFFERENT THAN
+#		THE ONE SPECIFIED AT THE BEGINNING.
+#		YOU CAN SKIP THIS PART WITH "-n" (DON'T DO DNS RESOLUTION)
+# 4)	LAUNCH A TCP PORT SCAN ON THE MOST 1000 POPULAR PORTS LISTED IN "nmap-services" FILE.
+#		A SYN STEALTH SCAN IS USUALLY USED FOR ROOT, AND A CONNECTION SCAN IS USED FOR NON-ROOT USERS
+#		TO READ RAW PACKETS
+# 5)	PRINT THE RESULTS IN HUMAN-READABLE OUTPUT AND EXITS.
+
+echo '[*] Example Scan: Standard NMAP Scan';
+echo '[*] Scanning: nmap scanme.nmap.org';
+nmap scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+# YOU CAN DO A MORE AGGRESSIVE SCAN, USING ARGUMENTS:
+# -p0-			SCAN ALL PORTS
+# -A 			OS DETECTION, VERSION, SCRIPT SCANNING AND TRACEROUTE
+# -T4			DON'T EXCEED 10MS FOR A SINGLE PORT
+
+echo '[*] Example Scan: Aggressive Scan (all ports)';
+echo '[*] Scanning: nmap -p0- -v -T4 -A scanme.nmap.org';
+nmap -p0- -v -T4 -A scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+###########################################################
+
+# PORT SCANNING: FLAGS
+
+#					"-sS"
+# TCP SYN STEALTH SCAN, AND IT WORKS AGAINST ALL TCP STACKS
+# IT SEND A "SYN" AND WAIT FOR RESPONSE:
+#
+# SYN+ACK:			OPEN
+# RST:				CLOSED
+# NO RESPONSE:		FILTERED
+
+echo '[*] Example Scan: TCP SYN Stealth Scan (-sS)';
+echo '[*] Scanning: nmap -sS scanme.nmap.org';
+nmap -sS scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sT"
+# NMAP ASK UNDERLYING O.S. TO DO A CONNECTION
+# USING THE "CONNECT" SYSTEM CALL.
+# USEFUL WHEN THE USER IS NOT ROOT AND HAS NO ACCESS TO RAW PACKETS.
+# IT WILL DO A COMPLETE TCP CONNECTION (CAN BE LOGGED)
+# IF YOU CAN, USE A "-sS" SCAN.
+
+echo '[*] Example Scan: TCP SYN Stealth Scan (-sT)';
+echo '[*] Scanning: nmap -sT scanme.nmap.org';
+nmap -sT scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sU"
+# A SIMPLE UDP SCAN TO THE PORTS SELECTED
+
+echo '[*] Example Scan: UDP Scan (-sU)';
+echo '[*] Scanning: nmap -sU scanme.nmap.org';
+nmap -sU scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sF,SN,sX"
+# THIS SCANS ARE USED TO SNEAK PAST FIREWALLS TO EXPLORE SISTEMS BEHIND.
+# THEY ARE A BIT MORE STEALTH THAN TCP SYN STEALTH SCAN.
+#
+# -sN:			TCP NULL SCAN: DOESN'T SET ANY BIT (LITTERALY SET TCP HEADER TO 0)
+# -sF:			TCP FIN SCAN: SET THE TCP FIN BIT
+# -sX:			TCP XMAS SCAN: SET TCP "FIN, PSH AND URG" FLAGS (LIGHTNING LIKE A XMAS TREE)
+
+echo '[*] Example Scan: TCP NULL Scan (-sN)';
+echo '[*] Scanning: nmap -sN scanme.nmap.org';
+nmap -sN scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: TCP FIN Scan (-sF)';
+echo '[*] Scanning: nmap -sF scanme.nmap.org';
+nmap -sF scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: TCP XMAS Scan (-sX)';
+echo '[*] Scanning: nmap -sX scanme.nmap.org';
+nmap -sX scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sA"
+# TCP ACK SCAN: CAN BE USED TO CHECK FIREWALL RULES:
+# IT HELPS TO UNDERSTAND IF PORTS ARE STATEFUL OR NOT.
+# CAN'T DISTINGUISH OPEN FROM CLOSED PORTS.
+
+echo '[*] Example Scan: TCP ACK Scan (-sA)';
+echo '[*] Scanning: nmap -sA scanme.nmap.org';
+nmap -sA scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sW"
+# TCP WINDOWS SCAN: IT IS LIKE TCP ACK SCAN
+# BUT CAN HELP FOR SOME KIND OF WINDOWS MACHINE
+# TO IDENTIFY IF A PORT IS OPEN OR CLOSED.
+
+echo '[*] Example Scan: TCP Windows Scan (-sW)';
+echo '[*] Scanning: nmap -sW scanme.nmap.org';
+nmap -sW scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sM"
+# MAIMON SCAN: SET A TCP FIN/ACK FLAG:
+# MOST OF SISTEMS SEND A RST PACKET IF THE PORT IS OPEN OR CLOSED.
+# SOME DBS-DRIVEN OS DROP THE PACKET IF THE PORT IS OPEN.
+
+echo '[*] Example Scan: TCP Maimon Scan (-sM)';
+echo '[*] Scanning: nmap -sM scanme.nmap.org';
+nmap -sM scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sI <ZOMBIE-HOST>"
+# TCP IDLE SCAN: THE STEALTHIEST SCAN TYPE OF ALL.
+# IT IS COMPLEX 
+# https://nmap.org/book/idlescan.html.
