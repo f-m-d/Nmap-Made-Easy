@@ -123,7 +123,7 @@ echo -e "\n\n";
 
 ###########################################################
 
-# PORT SCANNING: REASON WHYTO DO THAT
+# PORT SCANNING: REASONS TO SCAN
 
 # PORT SCANNING IS THE ACT TO SCAN PORT TO DETERMINE WHAT THE STATE THEY ARE.
 # NMAP SHOW THE PORTS IN 6 POSSIBLE STATUS:
@@ -313,5 +313,162 @@ echo -e "\n\n";
 
 #					"-sI <ZOMBIE-HOST>"
 # TCP IDLE SCAN: THE STEALTHIEST SCAN TYPE OF ALL.
-# IT IS COMPLEX 
+# IT IS COMPLEX AND SLOW
 # https://nmap.org/book/idlescan.html.
+
+echo '[*] Example Scan: TCP Idle Zombie Scan (-sI)';
+echo '[*] Scanning: nmap -sI <HOST-ZOMBIE> scanme.nmap.org';
+# nmap -sI <HOST-ZOMBIE> scanme.nmap.org
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-sO"
+# PROTOCOL SCAN THAT DETERMINES WHICH IP PROTOCOLS (ICMP,TCP, IGMP ETC.) ARE SUPPORTED
+# BY THE ATTACKED HOST. THIS IS LITTERALY NOT A SCAN (IT CICLES THROUGH IP PROTOCOL NUMBERS THAN TCP/UDP NUMBERS)
+# CAN USE THE "-p" OPTION TO SELECT PORTS AND REPORT AS A NORMAL SCAN CAN DO
+
+echo '[*] Example Scan: IP Protocol Scan (-sO)';
+echo '[*] Scanning: nmap -sO scanme.nmap.org';
+nmap -sO scanme.nmap.org;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-b username:password@server:port""
+# TCP FTP BOUNCE SCAN: TRICKS FTP SERVERS INTO PERFORMING PORTS SCANS BY PROXY.
+# ALMOST PATCHED EVERYWHERE, BUT TRYING DOESN'T COST MONEY, RIGHT?
+
+echo '[*] Example Scan: TCP Idle Zombie Scan (-sI)';
+echo '[*] Scanning: nmap -sI <HOST-ZOMBIE> scanme.nmap.org';
+# nmap -sI <HOST-ZOMBIE> scanme.nmap.org
+sleep 2s;
+echo -e "\n\n";
+
+
+###########################################################
+
+# TIMING OPTIONS
+
+# YOU CAN SET SOME TIME FLAGS TO ACTUALLY REDUCE THE AMOUNT OF TIME CONSUMED IN SCANS:
+
+
+
+#					"-T0,..,T5"
+# ADJUST NMAP SPEED FROM VERY SLOW (-T0) TO EXTREMELY AGGRO (-T5).
+# CAN BE COMBINED WITH OTHER GRANULAR OPTIONS LIKE:
+#
+#	--min-rtt-timeout						SET THE MIN, MAX, AND INIT AMOUNT OF TIME
+#	--max-rtt-timeout						NMAP WILL WAIT FOR A PORT SCAN PROBE RESPONSE
+#	--initial-rtt-timeout
+#
+#	--host-timeout							ASK NMAP TO GIVE UP ON HOST THAT DELAY TO ANSWER	
+#	--min-rate, --max-rate					SET THE MIN AND MAX NUMBER OF PROBE PACKETS NMAP SEND PER SECOND
+#	--max-retries							SPECIFIES THE MAXIMUM NUMBER OF RETRY ON A SINGLE PORT
+#	--min-hostgroup, --max-hostgroup		SET THE MIN AND MAX NUMBER OF HOST THAT NMAP CAN SCAN IN PARALLEL
+#	--min-parralelism, --max-parallelism	LIMIT THE NUMBER OF PORT SCAN PROBES THAT NMAP CAN HAVE OUTSTANDING
+#	--scan-delay, --max-scan-delay			ASK TO WAIT TO SEND A TIME TO SEND PROBES TO ANY INDIVIDUAL HOST.
+
+###########################################################
+
+# OUTPUT FORMAT AND VERBOSITY OPTION:
+
+# NMAP SUPPORTS MANY OUTPUT OPTIONS, BUT THE MOST USED
+# ARE THE NORMAL, XML AND GREAPABLE.
+# EXISTS OTHER USEFUL OPTIONS OPTIONS:
+
+
+
+#					"-v, -vv"
+# ASK NMAP TO BE MORE VERBOSE, PRINTING MORE INFORMATION.
+# YOU CAN BE EVEN MORE VERBOSE WITH "-vv"
+
+echo '[*] Example Scan: Simple Scan with verbose option (-v)';
+echo '[*] Scanning: nmap -v example.com';
+nmap -v example.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-d, -dd"
+# ASK NMAP TO PRINT AT DEBUGGING LEVEL: IT CAN BE AT MAX "-d9" LEVEL.
+# YOU CAN USE "-dd" FOR A GREATER EFFECT.
+
+echo '[*] Example Scan: Simple Scan with debug option (-d)';
+echo '[*] Scanning: nmap -d example.com';
+nmap -d example.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"--packet-trace"
+# SHOW A SUMMARY OF EVERY PACKET SENT OR RECEIVED.
+# IT IS USEFUL TO KNOW WHAT EXACTLY IS NMAP SENDING.
+# SPECIFY A SMALL AMOUNT OF PORTS WITH "-p" CAN HELP YOU
+# TO READ IN A MORE EFFICIENT WAY.
+
+echo '[*] Example Scan: Simple Scan with packet trace (--packet-trace)';
+echo '[*] Scanning: nmap -p443 --packet-trace example.com';
+nmap -p80 --packet-trace example.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#					"-oN, -oX, -oG, -oA, -oS ... <FILENAME>"
+# OUTPUT THE NMAP SCAN IN MANY FORMATS:
+# NORMAL, XML, GREPABLE, (USE -oA FOR OUTPUT THIS THREE AT ONCE)
+# IF YOU WANT TO HAVE A LAUGH, TRY THE SCRIPT KIDDIE "-oS"
+
+echo '[*] Example Scan: Simple Scan with Normal File Output (-oN)';
+echo '[*] Scanning: nmap -oN NMAP_NORMAL_OUTPUT.nmap example.com';
+nmap -oN NMAP_NORMAL_OUTPUT.nmap example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Simple Scan with XML File Output (-oX)';
+echo '[*] Scanning: nmap -oX NMAP_XML_OUTPUT.xml example.com';
+nmap -oX NMAP_XML_OUTPUT.xml example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Simple Scan with Grepable File Output (-oG)';
+echo '[*] Scanning: nmap -oG NMAP_GREPABLE_OUTPUT.gnmap example.com';
+nmap -oG NMAP_GREPABLE_OUTPUT.gnmap example.com;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Simple Scan with "ScRipT KIdd|3" File Output (-oG)';
+echo '[*] Scanning: nmap -oS NMAP_SCRIPTKIDDIE_OUTPUT.scriptkiddie example.com';
+nmap -oS NMAP_SCRIPTKIDDIE_OUTPUT.scriptkiddie example.com;
+sleep 2s;
+echo -e "\n\n";
+
+#					"--append-output"
+# APPEND OUTPUT, RATHER THAN OVERWRITE A FILE
+# USEFUL TO APPEND MORE OUTPUT OF THE SAME SCAN/HOSTS
+
+###########################################################
+
+# EXAMPLE: SCAN A NETWORK FOR A DETERMINED PORT
+
+# YOU CAN USE "-Pn" TO THREAT ALL HOSTS AS ONLINE,
+# "-p" FOR THE PORT AND CIDR STYLE FOR SCAN THE NETWORK
+
+echo '[*] Example Scan: Simple Scan for a defined port to a Network (EASY)';
+echo '[*] Scanning: nmap -Pn -p80 -oG %D.gnmap 192.168.1.0/24';
+echo '[*] This is a simple version but slower';
+nmap -Pn -p80 -oG %D.gnmap 192.168.1.0/24;
+sleep 2s;
+echo -e "\n\n";
+
+echo '[*] Example Scan: Simple Scan for a defined port to a Network (IMPROVED)';
+echo '[*] Scanning: nmap -T4 -Pn -p80 --min-rtt-timeout 150ms --max-rtt-timeout 200ms  --min-hostgroup 256 -oG %D_IMPROVED.gnmap 192.168.1.0/24';
+echo '[*] This is a simple version but slower';
+nmap -T4 -Pn -p80 --min-rtt-timeout 150ms --max-rtt-timeout 200ms  --min-hostgroup 256 -oG %D_IMPROVED.gnmap 192.168.1.0/24;
+sleep 2s;
+echo -e "\n\n";
