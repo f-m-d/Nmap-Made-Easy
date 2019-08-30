@@ -472,3 +472,46 @@ echo '[*] This is a simple version but slower';
 nmap -T4 -Pn -p80 --min-rtt-timeout 150ms --max-rtt-timeout 200ms  --min-hostgroup 256 -oG %D_IMPROVED.gnmap 192.168.1.0/24;
 sleep 2s;
 echo -e "\n\n";
+
+###########################################################
+
+# EXAMPLE: EXAMPLE WITH PLAYBOY
+
+# SHOW THE IP RANGE OF PLAYBOY.COM, SAVE THE NETRANGE AND DNS
+
+echo '[*] Whois Scan: Playboy (WHOIS FOR DNS AND NETRANGE)';
+echo '[*] Scanning: whois -h whois.arin.net n playboy';
+#whois -h whois.arin.net n playboy;
+whois playboy.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+# PING THE HOST TO CHECK LATENCY FOR NETRANGE SCAN TIME IN MS
+
+echo '[*] Ping Probe: Playboy (PING FOR LATENCY)';
+echo '[*] Pinging: ping -c5 www.playboy.com';
+ping -c5 www.playboy.com;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+#USE DIG TO OBTAIN PUBLIC DNS RECORD FROM A NAMESERVER (OBTAINED WITH WHOIS)
+
+echo '[*] Dig Scan: Playboy (DNS RECORDS)';
+echo '[*] Pinging: dig @PDNS1.ULTRADNS.NET playboy.com any';
+dig @PDNS1.ULTRADNS.NET playboy.com any;
+sleep 2s;
+echo -e "\n\n";
+
+
+
+# YOU CAN NOW PING SOME HOSTS TOF NETRANGE DISCOVERED, YOU CAN SEND
+# PACKETS TO ARBITRIARY HOSTS LIKE MX SERVERS:
+
+echo '[*] HPING3 Probe: Playboy (SEND TCP PACKETS)';
+echo '[*] Pinging: hping3 --syn -p 25 -c 5 <MAIL SERVER>';
+sleep 2s;
+echo -e "\n\n";
