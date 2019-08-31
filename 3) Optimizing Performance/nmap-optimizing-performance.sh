@@ -83,3 +83,60 @@ echo '[*] If you do nott need DNS resolution, just avoid it with "-n" !!!';
 nmap -T4 -sUV -F --version-intensity 0 scanme.nmap.org
 sleep 2s;
 echo -e "\n\n";
+
+
+
+#####################################################################################
+
+# EXECUTE CONCURRENT NMAP ISTANCES
+
+# RUNNING CONCURRENT NMAP INSTANCES TO SCAN EACH TARGET IS NOT A GOOD IDEA:
+# NMAP HAS IT'S OWN PARALLELIZATION SYSTEM AND IS ABLE TO SPEED UP WHEN CAN BE DONE.
+# FURTHER, YOU WILL DO A LOT OF OS FORKS TO SCAN AND RUNNING NMAP IN PARALLEL
+# DRAINS MEMORY BECAUSE EACH INSTANCE LOADS ITS OWN COPY  OF FILES LIKE "nmap-services" OR "nmap-os"
+#
+# YOU WILL HAVE (GENERALLY) AN IMPROVEMENT IF YOU DIVIDE THE NETWORK IN LARGE CHUNKS
+# AND EXECUTE NMAP SCANS CONCURRENTLY.
+# FIVE TO TEN PROCESSES CAN BE A GOOD IDEA OR YOU CAN RUN NMAP FROM SEPARATED HOSTS.
+# (TRY WITH "cron"/UNIX or "schtasks.exe"/WINDOWS TO DO REGULAR SCANS)
+#
+# IF YOU CAN, SCAN FROM THEIR LOCAL NETWORK TO REDUCE LATENCY AND IMPROVE SPEED.
+
+
+
+#####################################################################################
+
+# INCREASE AVAILABLE BANDWIDTH AND CPU SPEED
+
+# FREEING RESOURCES, HAVING A LAGER BANDWIDTH OR A BETTER CPU
+# CAN DRASTICALY IMPROVE NMAP SCANS SPEED.
+# YOU CAN HAVE MORE INFO WITH VERBOSE MODE":
+# IT WILL REPORT THE BYTE SENT/RECEIVED AND THE EXECUTION TIME.
+
+echo '[*] Example Scan: Scan performance';
+echo '[*] Scanning: nmap -v-n -p- 192.168.1.1';
+nmap -v-n -p- 192.168.1.1;
+sleep 2s;
+echo -e "\n\n";
+
+#####################################################################################
+
+# TIMING TEMPLATES
+
+# THE "-T" OPTION (WITH ITS RELATIVE NUMBERS) AUTOMATICALY SET VALUES AT:
+#
+# --[min/max/initial]-rtt-timeout
+# --max-retries
+# --scan-delay, --max-scan-delay
+# MAXIMUM TCP/UDP DELAY SCAN
+# --host-timeout
+# --max-parallelism (=1 T0-T2, DYNAMIC T3-..)
+#
+# THE VALUE YOU CAN SET TO IMPROVE SCAN TIMES ARE:
+
+# --[min/max]-parallelism
+# --[min/max]-hostgroup
+# --[min/max]-rate
+# --defeat-rst-ratelimit
+
+#####################################################################################
