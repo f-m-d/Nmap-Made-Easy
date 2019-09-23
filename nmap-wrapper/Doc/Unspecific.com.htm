@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html class="gr__unspecific_com"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Unspecific.com</title>
+<link rel="stylesheet" type="text/css" href="Unspecific.com_files/style.css">
+<script type="text/javascript" src="Unspecific.com_files/jquery.js"></script>
+<script type="text/javascript" src="Unspecific.com_files/script.js"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<div id="headerSub" class="sub">
+	<!-- jQuery handles to place the header background images -->
+	<div id="headerimgs">
+		<div id="headerimg1" class="headerimg" style="display: none; background-image: url(&quot;/images/header_back2.jpg&quot;); z-index: -27;"></div>
+		<div id="headerimg2" class="headerimg" style="background-image: url(&quot;/images/header_back3.jpg&quot;); display: block; z-index: -28;"></div>
+	</div>
+	<!-- Top navigation on top of the images -->
+	<div id="nav-outer">
+		<div id="navigation">
+			<div id="menu">
+				<ul>
+					<li><a href="http://www.unspecific.com/">Unspecific.com</a></li>
+					<li><a href="http://www.twitter.com/unspecific">Twitter</a></li>
+					<li><a href="http://www.unspecific.com/picasa.php">Gallery</a></li>
+					<li><a href="http://www.unspecific.com/software.php">Software</a></li>
+					<li><a href="http://www.dc214.org/">DC214</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="headerSubnav-outer">
+		<div id="headernav">
+			<div id="back" class="btn"></div>
+			<div id="control" class="btn"></div>
+			<div id="next" class="btn"></div>
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+<div id="content">
+	<p>&nbsp;</p>
+
+<a name="top"></a>
+<div class="bodytitle">nmap-wrapper.pl</div>
+<div class="mainbody">
+<center>*Faster* Scanning using Nmap...</center>
+
+<br clear="all">
+<small><center><a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+
+<a name="desc"></a>
+<h2>Description</h2>
+Wirten by: <a href="mailto:madhat@unspecific.com">MadHat at Unspecific.com</a><br>
+<br>
+ This wrapper will run 1 nmap scan for each IP in a range, as specified via the command line or from a file.  Use the other <a href="http://www.unspecific.com/nmap/">nmap tools</a> to generate reports on the results.
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="feat"></a>
+<h2>Features</h2>
+<ul>
+  <li> Takes a list of subnets and launches 1 nmap scan per IP
+  </li><li> Parallelizes the processes to decrease scanning time.
+  </li><li> Generates 1 log file per class C
+  </li><li> logs can be used with the other <a href="http://www.unspecific.com/nmap/">nmap tools</a> to generate reports on the results.
+  </li><li> Works well for monitoring large networks.
+</li></ul>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="bugs"></a>
+<h2>BUGS</h2>
+<ul>
+  <li> really simple, so not a lot of options
+</li></ul>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="requi"></a>
+<h2>Requirements</h2>
+<a href="http://www.perl.com/">perl</a> (&gt;5.6 prefered)<br>
+<a href="http://www.insecure.org/">nmap</a> (not needed for the program to run, but is needed to produce the searchable files)<br>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="down"></a>
+<h2>Download</h2>
+<a href="http://www.unspecific.com/nmap/wrapper/nmap-wrapper.pl">nmap-wrapper.pl</a> v1.5
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="out"></a>
+<h2>Output</h2>
+An example of the output...
+<pre>
+</pre>
+<br><br>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="use"></a>
+<h2>Usage </h2>
+<pre>$ ./nmap-wrapper.pl
+
+ : nmap-wrapper v1.5 - MadHat (at) Unspecific.com
+ : http://www.unspecific.com/
+
+./nmap-wrapper.pl &lt; -hav &gt; -i <filename> |  -l <host_list> \
+         [ -n <num_children>] [-p <pid_file> ] [ -o "<nmap options="">" ] \
+	 [ -L <log_dir> ] [ -b <blacklist> ]
+         options:
+  -h   help (this stuff)
+  -v   verbose - will add details
+  -l   network list in comma delimited form: a.b.c.d/M,e.f.g.h/x.y.z.M
+  -i   input file containing network list, one network per line
+  -n   max number of children to fork
+  -o   nmap options to send to each child process
+         it is expecting the "" around the options
+         Default Options:  -O -sT -F
+  -p   PID file, lists the currently running processes and their state
+        default location is /usr/local/var/run/wrapper.pid
+  -L   Log file dir.  This is where scan results are stored
+        default location is /usr/local/var/log/nmap/
+  -b   blacklist.  file that contains a list of IPs to NOT scan
+        default location is /usr/local/etc/nmap/blacklist
+</blacklist></log_dir></nmap></pid_file></num_children></host_list></filename></pre>
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="license"></a>
+<h2>Licensing</h2>
+<pre>This product is released under the following License.
+
+# Copyright (c) 2001-2002, MadHat (madhat@unspecific.com)
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in
+#     the documentation and/or other materials provided with the distribution.
+#   * Neither the name of MadHat Productions nor the names of its
+#     contributors may be used to endorse or promote products derived
+#     from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+# TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre>
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+&nbsp;<br>
+</div>
+</div>
+</div>
+
+
+
+
+</body></html>

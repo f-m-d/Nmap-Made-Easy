@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html class="gr__unspecific_com"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Unspecific.com</title>
+<link rel="stylesheet" type="text/css" href="Unspecific.com_files/style.css">
+<script type="text/javascript" src="Unspecific.com_files/jquery.js"></script>
+<script type="text/javascript" src="Unspecific.com_files/script.js"></script>
+</head>
+<body data-gr-c-s-loaded="true">
+<div id="headerSub" class="sub">
+	<!-- jQuery handles to place the header background images -->
+	<div id="headerimgs">
+		<div id="headerimg1" class="headerimg" style="display: block; background-image: url(&quot;/images/header_back2.jpg&quot;); z-index: -3;"></div>
+		<div id="headerimg2" class="headerimg" style="background-image: url(&quot;/images/header_back.jpg&quot;); display: none; z-index: -2;"></div>
+	</div>
+	<!-- Top navigation on top of the images -->
+	<div id="nav-outer">
+		<div id="navigation">
+			<div id="menu">
+				<ul>
+					<li><a href="http://www.unspecific.com/">Unspecific.com</a></li>
+					<li><a href="http://www.twitter.com/unspecific">Twitter</a></li>
+					<li><a href="http://www.unspecific.com/picasa.php">Gallery</a></li>
+					<li><a href="http://www.unspecific.com/software.php">Software</a></li>
+					<li><a href="http://www.dc214.org/">DC214</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="headerSubnav-outer">
+		<div id="headernav">
+			<div id="back" class="btn"></div>
+			<div id="control" class="btn"></div>
+			<div id="next" class="btn"></div>
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+<div id="content">
+	<p>&nbsp;</p>
+
+<a name="top">
+
+<div class="bodytitle">nmap-search.pl</div>
+</a><div class="mainbody"><a name="top">
+<center>Searching the Greapable Nmap...</center>
+
+<br clear="all">
+<small></small></a><small><center><a name="top"></a><a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+
+<a name="desc">
+<h2>Description</h2>
+Wirten by: </a><a href="mailto:madhat@unspecific.com">MadHat at Unspecific.com</a><br>
+<br>
+Basically, this will allow you to search through a nmap -oG (grepable) file to look for specific things and reformat it for you.
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="feat">
+<h2>Features</h2>
+</a><ul><a name="feat">
+  <li>  Uses nmap's -oG format
+  </li><li>  can be run as a CGI
+  </li><li>  can include or exclude matches
+  </li></a><li><a name="feat">  when run as a CGI, it creates a list of 
+available "db's", which is all files in the current directory with the 
+extension .nmap and adds the date/time stamp of when the file was 
+created, makes for easy 'cron'ing of nmap to create output into that 
+directory, and searchable from a web browser. ('cause I'm lazy)<br>
+</a><a href="http://www.unspecific.com/nmap/search/nmap-search.pl.html">Sample Web Interface</a> This is just an example, <b>IT DOES NOT WORK</b>
+</li></ul>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="bugs">
+<h2>BUGS</h2>
+<ul>
+  <li> really simple, so not a lot of options
+</li></ul>
+
+<small></small></a><small><center><a name="bugs"><hr width="80%" size="1" noshade="noshade"></a><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="requi">
+<h2>Requirements</h2>
+</a><a href="http://www.perl.com/">perl</a> (&gt;5.6 prefered)<br>
+<a href="http://www.insecure.org/">nmap</a> (not needed for the program to run, but is needed to produce the searchable files)<br>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="down">
+<h2>Download</h2>
+</a><a href="http://www.unspecific.com/nmap/search/nmap-search.pl">nmap-search.pl</a>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="out">
+<h2>Output</h2>
+</a><a href="http://www.unspecific.com/nmap/search/nmap-search.pl.html">Sample Web Interface</a> This is just an example, <b>IT DOES NOT WORK</b><br><br>
+An example of the output...
+<pre>madhat@avatar $ ./nmap-search.cgi -f sample.nmap os '!windows'
+NOT searching for windows in field os
+4 entries found
+
+----------------------------------------
+Host:  172.21.140.1 (router.sample.com)
+IPID Seq:  All zeros
+Ignored State:  closed (1557)
+OS:  Cisco IOS 11.3 - 12.0(11)|Cisco IOS v11.14(CA)/12.0.2aT1/v12.0.3T
+Ports:
+         23     open    tcp             telnet
+Seq Index:  1590
+
+
+----------------------------------------
+Host:  172.21.140.4 (172-21-140-4.sample.com)
+IPID Seq:  All zeros
+Ignored State:  closed (1557)
+OS:  Cisco IOS 11.1(7)-11.2(8.10)
+Ports:
+         23     open    tcp             telnet
+Seq Index:  3291
+
+
+----------------------------------------
+Host:  172.21.140.131 (172-21-140-131.sample.com)
+IPID Seq:  Incremental
+Ignored State:  closed (1553)
+OS:  Lexmark Optra S Printer
+Ports:
+         7      open    tcp             echo
+         79     open    tcp             finger
+         80     open    tcp             http
+         515    open    tcp             printer
+         9100   open    tcp             jetdirect
+Seq Index:  1
+
+
+----------------------------------------
+Host:  172.21.140.200 (172-21-140-200.sample.com)
+Ignored State:  closed (1556)
+OS:  D-Link 704P Ethernet Broadband Gateway
+Ports:
+         23     open    tcp             telnet
+         80     open    tcp             http
+
+</pre>
+<br><br>
+
+<small><center><hr width="80%" size="1" noshade="noshade"><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="use">
+<h2>Usage </h2>
+<pre>usage: ./nmap-search.pl [-f file] &lt;field&gt; &lt;search&gt;
+
+&lt;field&gt; The field you want to look for (OS, host, port)
+        may be shortened to the shortist non-duplicated string
+        os may be o, host may be h, etc...
+
+&lt;search&gt; is the search string you want to look for
+        to search for an open port use port/state (21/open)
+
+        you can use the bang (!) at the begining of a search
+        to look for entries that do not contain that string
+        to look for non Microsoft product,
+        look for 'os' and '!microsoft'
+
+        entries seperated by a space are automatically ORed
+        but, the first one will determin the NOT(!) or not...
+        so, if I used 'OS' for my field and
+        '!microsoft windows cisco'
+        this would find all entries that did not have
+        microsoft, windows or cisco in the OS field.
+
+[-f file] for the nmap (-oG) file you want to use as the DB
+
+</pre>
+<small></small></a><small><center><a name="use"><hr width="80%" size="1" noshade="noshade"></a><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+<a name="license">
+<h2>Licensing</h2>
+<pre>This product is released under the following License.
+
+# Copyright (c) 2001-2002, MadHat (madhat@unspecific.com)
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in
+#     the documentation and/or other materials provided with the distribution.
+#   * Neither the name of MadHat Productions nor the names of its
+#     contributors may be used to endorse or promote products derived
+#     from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+# TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+# NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</pre>
+<small></small></a><small><center><a name="license"><hr width="80%" size="1" noshade="noshade"></a><a href="#top">Top</a> | <a href="#desc">Description</a> | <a href="#feat">Features</a> | <a href="#bugs">Bugs</a> | <a href="#requi">Requirements</a> | <a href="#down">Download</a> | <a href="#out">Output</a> | <a href="#use">Usage/Docs</a> | <a href="#license">License</a><hr width="80%" size="1" noshade="noshade"></center></small>
+</div>
+
+</div>
+</div>
+
+
+
+
+</body></html>
